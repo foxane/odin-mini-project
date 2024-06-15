@@ -1,0 +1,23 @@
+{
+  "name": "generic-dropdown",
+  "version": "1.0.0",
+  "description": "Your generic webpage dropdown, nothing special.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foxane/odin-dropdown.git"
+  },
+  "keywords": [
+    "dropdown",
+    "navbar"
+  ],
+  "author": "foxane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/foxane/odin-dropdown/issues"
+  },
+  "homepage": "https://github.com/foxane/odin-dropdown#readme"
+}
