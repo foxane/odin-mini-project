@@ -1,0 +1,91 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #050541;
+  height: 100vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  width: 400px;
+  height: 250px;
+}
+
+button {
+  display: block;
+  font-size: 30px;
+  padding: 0px 15px;
+  margin: auto;
+  border-radius: 50%;
+
+  border: 1px solid;
+  background-color: #9696e4;
+  color: rgb(0, 0, 0);
+}
+button:hover {
+  cursor: pointer;
+  background-color: #7e7ef8;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 250px 50px;
+}
+.top {
+  grid-row: 1/2;
+  grid-column: 1/-1;
+
+  display: flex;
+  gap: 10px;
+}
+.frame {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+
+  width: 400px;
+  border-radius: 10px;
+  scroll-behavior: smooth;
+}
+.frame::-webkit-scrollbar {
+  display: none;
+}
+.strip {
+  width: 2000px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.bot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.dot {
+  width: 20px;
+  height: 20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+
+  transition: background 0.25s;
+}
+
+.dot:hover,
+.dot.active {
+  background-color: #7e7ef8;
+  cursor: pointer;
+}
