@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+      }
+      form {
+        display: flex;
+        flex-flow: column nowrap;
+        background-color: #c2bdbd;
+        padding: 2rem;
+        gap: 2rem;
+        border-radius: 10px;
+      }
+      label {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+      }
+      input {
+        background-color: #fff;
+      }
+      input:valid {
+        background-color: #0f0;
+      }
+      input:invalid {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="#" method="post" novalidate>
+      <label for="email">
+        Email
+        <input
+          type="email"
+          name="email"
+          id="email"
+          pattern="[a-z0-9]+@[a-z0-9]+\.[a-z0-9]+"
+          required
+        />
+      </label>
+      <label for="country"
+        >Country
+        <select name="country" id="country">
+          <option value="id">🇮🇩 Indonesia</option>
+        </select>
+      </label>
+      <label for="zipcode"
+        >Zipcode
+        <input
+          id="zipcode"
+          name="zipcode"
+          type="number"
+          min="100000"
+          max="999999"
+          required
+        />
+      </label>
+      <label for="password"
+        >Password
+        <input
+          type="password"
+          name="password"
+          id="password"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$"
+          minlength="8"
+          maxlength="30"
+          required
+        />
+      </label>
+      <label for="confirm-password"
+        >Confirm Password
+        <input
+          type="password"
+          name="confirm-password"
+          id="confirm-password"
+          required
+        />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      const inputs = document.querySelectorAll('input');
+      const submitBtn = document.querySelector('button');
+      const form = document.querySelector('form');
+
+      const validate = function (el) {
+        switch (el.id) {
+          case 'email':
+            if (el.validity.patternMismatch) {
+              el.setCustomValidity('Please enter a valid email address!');
+            } else {
+              el.setCustomValidity('');
+            }
+            break;
+
+          case 'zipcode':
+            if (el.validity.rangeUnderflow || el.validity.rangeOverflow) {
+              el.setCustomValidity(
+                'Indonesian zip code must be exactly 6 digits!'
+              );
+            } else {
+              el.setCustomValidity('');
+            }
+            break;
+
+          case 'password':
+            if (el.validity.patternMismatch) {
+              el.setCustomValidity(
+                'Password must include at least one uppercase letter, one lowercase letter, and one number'
+              );
+            } else if (el.validity.tooShort) {
+              el.setCustomValidity(
+                'Password must be at least 8 characters long'
+              );
+            } else {
+              el.setCustomValidity('');
+            }
+            break;
+
+          case 'confirm-password':
+            const passwordField = document.getElementById('password');
+            if (el.value !== passwordField.value) {
+              el.setCustomValidity('Passwords do not match!');
+            } else {
+              el.setCustomValidity('');
+            }
+            break;
+        }
+
+        el.reportValidity();
+      };
+
+      inputs.forEach(function (el) {
+        el.addEventListener('input', function () {
+          validate(el);
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        inputs.forEach(function (el) {
+          validate(el);
+        });
+
+        const isValid = Array.from(inputs).every(function (el) {
+          return el.checkValidity();
+        });
+
+        if (isValid) {
+          form.textContent = 'SUXKESS';
+          console.log('success');
+        } else {
+          console.log('goblok ed');
+        }
+      });
+    </script>
+  </body>
+</html>
