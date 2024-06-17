@@ -7,6 +7,7 @@
   <body>
     <img src="#" />
     <button>Refresh Image</button>
+    <p></p>
 
     <script>
       const img = document.querySelector('img');
@@ -21,9 +22,14 @@
           })
           // Error?
           .then((response) => {
+            if (response.meta.status !== 200) {
+              throw new Error(response.meta.msg);
+            }
             img.src = response.data.images.original.url;
           })
-          .catch((error) => console.log(error));
+          .catch((error) => {
+            document.querySelector('p').textContent = error;
+          });
       }
 
       document.querySelector('button').addEventListener('click', () => {
